@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme */
+    --background: 255 255 255;
+    --foreground: 17 24 39;
+    --card: 249 250 251;
+    --card-foreground: 17 24 39;
+    --popover: 255 255 255;
+    --popover-foreground: 17 24 39;
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+    --secondary: 243 244 246;
+    --secondary-foreground: 75 85 99;
+    --muted: 249 250 251;
+    --muted-foreground: 107 114 128;
+    --accent: 243 244 246;
+    --accent-foreground: 17 24 39;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 229 231 235;
+    --input: 255 255 255;
+    --ring: 59 130 246;
+    --radius: 0.5rem;
+    --sidebar-background: 249 250 251;
+    --sidebar-foreground: 17 24 39;
+    --sidebar-primary: 59 130 246;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 243 244 246;
+    --sidebar-accent-foreground: 17 24 39;
+    --sidebar-border: 229 231 235;
+    --sidebar-ring: 59 130 246;
+  }
+
+  .dark {
+    /* Modern dark theme - NO BROWN COLORS */
+    --background: 9 9 11; /* #09090B - Pure dark */
+    --foreground: 250 250 250; /* #FAFAFA - Pure white text */
+    --card: 24 24 27; /* #18181B - Dark gray cards */
+    --card-foreground: 250 250 250; /* White text on cards */
+    --popover: 24 24 27;
+    --popover-foreground: 250 250 250;
+    --primary: 99 102 241; /* #6366F1 - Bright blue */
+    --primary-foreground: 255 255 255;
+    --secondary: 39 39 42; /* #27272A - Medium gray */
+    --secondary-foreground: 212 212 216; /* #D4D4D8 */
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170; /* #A1A1AA - Light gray */
+    --accent: 63 63 70; /* #3F3F46 - Accent gray */
+    --accent-foreground: 250 250 250;
+    --destructive: 248 113 113;
+    --destructive-foreground: 255 255 255;
+    --border: 63 63 70; /* #3F3F46 - Gray borders */
+    --input: 39 39 42;
+    --ring: 99 102 241;
+    --sidebar-background: 24 24 27;
+    --sidebar-foreground: 250 250 250;
+    --sidebar-primary: 99 102 241;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 39 39 42;
+    --sidebar-accent-foreground: 212 212 216;
+    --sidebar-border: 63 63 70;
+    --sidebar-ring: 99 102 241;
+  }
+}
+
+@layer base {
+  /* AGGRESSIVE COLOR RESET - Override everything */
+  * {
+    @apply border-border;
+  }
+
+  html {
+    background-color: rgb(9 9 11) !important; /* Force dark background */
+    color: rgb(250 250 250) !important; /* Force white text */
+  }
+
+  body {
+    background-color: rgb(9 9 11) !important; /* Force dark background */
+    color: rgb(250 250 250) !important; /* Force white text */
+    font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
+  }
+
+  /* Force dark mode on root */
+  html.dark,
+  body.dark,
+  #root {
+    background-color: rgb(9 9 11) !important;
+    color: rgb(250 250 250) !important;
+  }
+
+  /* Override any brown/amber colors that might be applied */
+  [style*="brown"],
+  [style*="amber"],
+  [style*="#8B4513"],
+  [style*="#D2691E"],
+  [style*="#CD853F"],
+  [style*="rgb(139, 69, 19)"],
+  [style*="rgb(210, 105, 30)"],
+  [style*="rgb(205, 133, 63)"] {
+    background-color: rgb(24 24 27) !important;
+    color: rgb(250 250 250) !important;
+  }
+
+  /* Modern card styling */
+  .card-modern {
+    background-color: rgb(24 24 27) !important;
+    color: rgb(250 250 250) !important;
+    @apply backdrop-blur-sm border border-border/50 rounded-lg shadow-lg;
+  }
+
+  /* Modern button effects */
+  .btn-modern {
+    background-color: #183b4e !important;
+    color: rgb(255 255 255) !important;
+    @apply rounded-md px-4 py-2 font-medium transition-all duration-200 hover:opacity-90 shadow-sm;
+  }
+
+  .btn-modern-outline {
+    background-color: transparent !important;
+    color: rgb(250 250 250) !important;
+    border-color: rgb(63 63 70) !important;
+    @apply border rounded-md px-4 py-2 font-medium transition-all duration-200 hover:bg-accent hover:text-accent-foreground;
+  }
+
+  /* Modern input styling */
+  .input-modern {
+    background-color: rgb(39 39 42) !important;
+    color: rgb(250 250 250) !important;
+    border-color: rgb(63 63 70) !important;
+    @apply border rounded-md px-3 py-2 placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-ring transition-all duration-200;
+  }
+
+  /* Navigation styling */
+  .nav-modern {
+    background-color: rgba(9, 9, 11, 0.8) !important;
+    border-bottom-color: rgba(63, 63, 70, 0.5) !important;
+    @apply backdrop-blur-md border-b;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-all duration-200 hover:scale-105 hover:shadow-lg;
+  }
+
+  /* Link styling */
+  .link-modern {
+    color: rgb(250 250 250) !important;
+    @apply hover:text-primary transition-colors duration-200;
+  }
+
+  a {
+    color: rgb(99 102 241) !important;
+    @apply hover:opacity-80 transition-colors duration-200;
+  }
+}
+
+/* Clean typography */
+@layer components {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: rgb(250 250 250) !important;
+    @apply font-semibold;
+  }
+
+  h1 {
+    @apply text-3xl lg:text-4xl;
+  }
+  h2 {
+    @apply text-2xl lg:text-3xl;
+  }
+  h3 {
+    @apply text-xl lg:text-2xl;
+  }
+
+  p {
+    color: rgb(250 250 250) !important;
+    @apply leading-relaxed;
+  }
+
+  /* Force all text to be readable */
+  span,
+  div,
+  section,
+  article,
+  main,
+  header,
+  footer,
+  nav,
+  aside {
+    color: inherit;
+  }
+
+  /* Secondary text */
+  .text-secondary {
+    color: rgb(161 161 170) !important;
+  }
+
+  /* Override any existing card styles */
+  .card {
+    background-color: rgb(24 24 27) !important;
+    color: rgb(250 250 250) !important;
+    @apply border border-border/50 rounded-lg shadow-lg p-6;
+  }
+
+  /* Glass effects */
+  .glass-card {
+    background-color: rgba(24, 24, 27, 0.95) !important;
+    color: rgb(250 250 250) !important;
+    @apply backdrop-blur-sm border border-border/50 rounded-lg shadow-lg;
+  }
+
+  .glass-button {
+    background-color: #183b4e !important;
+    color: rgb(255 255 255) !important;
+    @apply rounded-md px-4 py-2 font-medium transition-all duration-200 hover:opacity-90;
+  }
+
+  .glass-input {
+    background-color: rgb(39 39 42) !important;
+    color: rgb(250 250 250) !important;
+    border-color: rgb(63 63 70) !important;
+    @apply border rounded-md px-3 py-2;
+  }
+
+  .btn-glass {
+    background-color: #183b4e !important;
+    color: rgb(255 255 255) !important;
+    @apply rounded-md px-4 py-2 font-medium transition-all duration-200 hover:opacity-90;
+  }
+
+  .btn-glass-outline {
+    background-color: transparent !important;
+    color: rgb(250 250 250) !important;
+    border-color: rgb(63 63 70) !important;
+    @apply border rounded-md px-4 py-2 font-medium transition-all duration-200;
+  }
+
+  .card-glass {
+    background-color: rgba(24, 24, 27, 0.95) !important;
+    color: rgb(250 250 250) !important;
+    @apply backdrop-blur-sm border border-border/50 rounded-lg shadow-lg p-6;
+  }
+
+  .nav-glass {
+    background-color: rgba(9, 9, 11, 0.8) !important;
+    @apply backdrop-blur-md border-b border-border/50;
+  }
+
+  .glow-hover {
+    @apply hover-lift;
+  }
+
+  /* Story link effect */
+  .story-link {
+    color: rgb(250 250 250) !important;
+    @apply relative inline-block transition-colors duration-200;
+  }
+
+  .story-link:hover {
+    color: rgb(99 102 241) !important;
+  }
+
+  .story-link::after {
+    content: "";
+    background-color: #183b4e !important;
+    @apply absolute w-full scale-x-0 h-0.5 bottom-0 left-0 origin-bottom-right transition-transform duration-300;
+  }
+
+  .story-link:hover::after {
+    @apply scale-x-100 origin-bottom-left;
+  }
+
+  /* Utility classes */
+  .text-primary-bright {
+    color: rgb(99 102 241) !important;
+  }
+
+  .bg-elevated {
+    background-color: rgb(24 24 27) !important;
+  }
+
+  .bg-interactive {
+    background-color: rgb(63 63 70) !important;
+    @apply hover:opacity-80;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent;
+  }
+
+  .glow-primary {
+    @apply shadow-lg shadow-primary/20;
+  }
+}

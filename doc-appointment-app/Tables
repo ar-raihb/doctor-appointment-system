@@ -1,0 +1,58 @@
+CREATE TABLE patients (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  phone VARCHAR(20),
+  role VARCHAR(20) NOT NULL DEFAULT 'patient',
+  age INTEGER,
+  gender VARCHAR(10),
+  blood_group VARCHAR(5)
+);
+
+CREATE TABLE doctors (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  phone VARCHAR(20),
+  role VARCHAR(20) NOT NULL DEFAULT 'doctor',
+  specialization VARCHAR(100),
+  experience INTEGER,
+  rating NUMERIC(2,1),
+  consultation_fee INTEGER
+);
+
+CREATE TABLE appointments (
+  id SERIAL PRIMARY KEY,
+  patient_id INTEGER REFERENCES patients(id),
+  doctor_id INTEGER REFERENCES doctors(id),
+  date DATE NOT NULL,
+  time VARCHAR(10) NOT NULL,
+  status VARCHAR(20),
+  symptoms TEXT,
+  notes TEXT,
+  created_at TIMESTAMP
+);
+
+CREATE TABLE prescriptions (
+  id SERIAL PRIMARY KEY,
+  patient_id INTEGER REFERENCES patients(id),
+  doctor_id INTEGER REFERENCES doctors(id),
+  appointment_id INTEGER REFERENCES appointments(id),
+  diagnosis TEXT,
+  instructions TEXT,
+  created_at TIMESTAMP
+);
+
+
+CREATE TABLE medications (
+  id SERIAL PRIMARY KEY,
+  prescription_id INTEGER REFERENCES prescriptions(id),
+  name VARCHAR(100) NOT NULL,
+  dosage VARCHAR(50),
+  frequency VARCHAR(50),
+  duration VARCHAR(50)
+);
